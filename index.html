@@ -3,14 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean Energy Matters</title>
+    <title>Clean Energy Matters Login (via Clerk)</title>
+    <script src="https://unpkg.com/@clerk/clerk-js@latest/dist/clerk.browser.js" crossorigin="anonymous"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; padding: 20px; }
+        #sign-in { border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Clean Energy Matters!</h1>
-    <p>This is a simple web page hosted on GitHub Pages. Learn more about sustainable energy here.</p>
-    <ul>
-        <li><a href="https://example.com/solar">Solar Power</a></li>
-        <li><a href="https://example.com/wind">Wind Energy</a></li>
-    </ul>
+    <h1>Login to Clean Energy Matters</h1>
+    <div id="sign-in"></div>
+
+    <script>
+        // Replace with your Clerk Publishable Key
+        const clerk = new Clerk('YOUR_PUBLISHABLE_KEY');
+        clerk.load();
+
+        clerk.mountSignIn(document.getElementById('sign-in'));
+
+        // Optional: Handle successful sign-in (e.g., redirect)
+        clerk.addListener('signedIn', (event) => {
+            console.log('Signed in:', event);
+            // Redirect to your site, e.g., window.location.href = 'https://cleanenergymatters.com/dashboard';
+        });
+    </script>
 </body>
 </html>
+
